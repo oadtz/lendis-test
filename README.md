@@ -4,6 +4,9 @@ There are some areas of improvement that I planned to do but did not complete in
 - The product list is loaded from the static data file, we can load the list from API.
 
 To run the code, please execute these commands.
+
 $ npm install
+
 $ npm start
+
 Then go to http://localhost:3000 with your browser.
