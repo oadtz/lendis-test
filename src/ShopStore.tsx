@@ -24,6 +24,16 @@ const ShopStore = (props: any) => {
         }
     }
 
+    const fetchCart = () => {
+        try {
+            const cartData = JSON.parse(sessionStorage.getItem('cart') ?? '{}')
+
+            updateCart(cartData)
+        } catch (e) {
+            console.error('Failed to fetch cart data from sessionStorage')
+        }
+    }
+
     const addToCart = (id: number) => {
         const updatedCart = {...cart}
 
@@ -34,6 +44,7 @@ const ShopStore = (props: any) => {
         }
         
         updateCart(updatedCart)
+        sessionStorage.setItem('cart', JSON.stringify(updatedCart))
     }
 
     const removeFromCart = (id: number) => {
@@ -42,10 +53,12 @@ const ShopStore = (props: any) => {
         delete updatedCart[id];
 
         updateCart(updatedCart)
+        sessionStorage.setItem('cart', JSON.stringify(updatedCart))
     }
 
 
     useEffect(() => {
+        fetchCart()
         fetchProducts()
     }, [])
 
