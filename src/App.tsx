@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Routes, Route, Link } from "react-router-dom";
 import ShopStore, { Context } from './ShopStore';
 import Home from './Home';
@@ -7,7 +7,7 @@ import ShoppingCart from './ShoppingCart';
 import 'bulma/css/bulma.min.css';
 
 
-const App = () => {
+const App: FunctionComponent = () => {
   return (
     <ShopStore>
       <div className="has-navbar-fixed-top">

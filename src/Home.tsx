@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { FunctionComponent } from 'react';
 import ProductCard from './ProductCard';
 import { Context } from './ShopStore';
 
-const Home = () => {
+const Home: FunctionComponent = () => {
     return (
         <section className="section">
             <div className="container">

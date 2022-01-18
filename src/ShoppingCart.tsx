@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Context } from './ShopStore';
+import { Product } from './types';
 
-const ShoppingCart = () => {
+const ShoppingCart: FunctionComponent = () => {
+
+    const calculateTotalAmount = (products: Product[], cart: Record<number, number>): number => {
+        return Object.keys(cart).reduce((accumAmount, productId) => {
+            const product = products.find(p => p.id === Number(productId))
+
+            return accumAmount + (product?.price ?? 0 * cart[Number(productId)])
+        }, 0)
+    }
+
     return (
         <section className="section">
             <div className="container">
@@ -11,6 +21,9 @@ const ShoppingCart = () => {
 
                 <Context.Consumer>
                     {({products, cart, removeFromCart}) => (
+                        Object.keys(cart).length === 0 ? 
+                        <p>Cart is empty</p>
+                        :
                         <table className="table is-fullwidth">
                             <thead>
                                 <tr>
@@ -26,13 +39,19 @@ const ShoppingCart = () => {
 
                                 return (
                                     <tr key={id}>
-                                        <td>{product?.title}</td>
-                                        <td>{cart[productId]}</td>
+                                        <td>{product?.title} x {cart[productId]}</td>
+                                        <td>${(product?.price ?? 0) * cart[productId]}</td>
                                         <td><button className="button is-danger" onClick={() => removeFromCart(productId)}>Remove</button></td>
                                     </tr>
                                 )
                             })}
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Total</th>
+                                    <th colSpan={2}>${calculateTotalAmount(products, cart)}</th>
+                                </tr>
+                            </tfoot>
                         </table>
                     )}
                 </Context.Consumer>
