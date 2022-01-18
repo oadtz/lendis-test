@@ -1,6 +1,5 @@
 import React from 'react';
 import { Context } from './ShopStore';
-import items from './data/items'
 
 const ShoppingCart = () => {
     return (
@@ -11,7 +10,7 @@ const ShoppingCart = () => {
                 </h1>
 
                 <Context.Consumer>
-                    {({cart, removeFromCart}) => (
+                    {({products, cart, removeFromCart}) => (
                         <table className="table is-fullwidth">
                             <thead>
                                 <tr>
@@ -22,13 +21,14 @@ const ShoppingCart = () => {
                             </thead>
                             <tbody>
                             {Object.keys(cart).map(id => {
-                                const item = items.find(i => i.id === id)
+                                const productId = Number(id)
+                                const product = products.find(i => i.id === productId)
 
                                 return (
                                     <tr key={id}>
-                                        <td>{item?.name}</td>
-                                        <td>{cart[id]}</td>
-                                        <td><button className="button is-danger" onClick={() => removeFromCart(id)}>Remove</button></td>
+                                        <td>{product?.title}</td>
+                                        <td>{cart[productId]}</td>
+                                        <td><button className="button is-danger" onClick={() => removeFromCart(productId)}>Remove</button></td>
                                     </tr>
                                 )
                             })}

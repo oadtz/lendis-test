@@ -1,16 +1,13 @@
 import React from 'react';
 import { Context } from './ShopStore';
+import { Product } from './types';
 
-type ItemProps = {
-    id: string,
-    name: string,
-    description: string,
-    image: string,
-    price: number
+type ProductProps = {
+    product: Product
 }
 
-const Item = (props: ItemProps) => {
-    const { id, name, description, image, price } = props
+const ProductCard = ({ product }: ProductProps) => {
+    const { id, title, image, price } = product
 
     return (
         <Context.Consumer>
@@ -18,18 +15,17 @@ const Item = (props: ItemProps) => {
             <article className="card">
                 <div className="card-image">
                     <figure className="image is-4by3">
-                        <img src={image} alt={name} />
+                        <img src={image} alt={title} />
                     </figure>
                 </div>
                 <div className="card-content">
                     <div className="media">
                         <div className="media-content">
-                            <p className="title is-4">{name}</p>
+                            <p className="is-4">{title}</p>
                         </div>
                     </div>
 
                     <div className="content">
-                        <p>{description}</p>
                         <h3>${price}</h3>
                     </div>
                 </div>
@@ -43,4 +39,4 @@ const Item = (props: ItemProps) => {
     )
 }
 
-export default Item;
+export default ProductCard;

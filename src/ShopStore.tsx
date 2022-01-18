@@ -1,17 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Product } from './types';
 
 type ContextProps = {
-    cart: Record<string, number>
-    addToCart: (id: string) => void
-    removeFromCart: (id: string) => void
+    products: Product[]
+    cart: Record<number, number>
+    addToCart: (id: number) => void
+    removeFromCart: (id: number) => void
 }
 
 export const Context = React.createContext({} as ContextProps);
 
 const ShopStore = (props: any) => {
-    const [cart, updateCart] = useState({} as Record<string, number>)
+    const [products, setProducts] = useState([])
+    const [cart, updateCart] = useState({} as Record<number, number>)
 
-    const addToCart = (id: string) => {
+    const fetchProducts = async () => {
+        try {
+            const response = await fetch('https://fakestoreapi.com/products');
+
+            setProducts(await response.json());
+        } catch (e) {
+            console.error('Failed to fetch products');
+        }
+    }
+
+    const addToCart = (id: number) => {
         const updatedCart = {...cart}
 
         if (id in updatedCart) {
@@ -23,7 +36,7 @@ const ShopStore = (props: any) => {
         updateCart(updatedCart)
     }
 
-    const removeFromCart = (id: string) => {
+    const removeFromCart = (id: number) => {
         const updatedCart = {...cart}
 
         delete updatedCart[id];
@@ -32,10 +45,14 @@ const ShopStore = (props: any) => {
     }
 
 
+    useEffect(() => {
+        fetchProducts()
+    }, [])
 
 
     return (
         <Context.Provider value={{
+            products,
             cart,
             addToCart,
             removeFromCart

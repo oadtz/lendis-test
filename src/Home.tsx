@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import items from './data/items'
-import Item from './Item';
+import ProductCard from './ProductCard';
+import { Context } from './ShopStore';
 
 const Home = () => {
     return (
@@ -13,11 +13,13 @@ const Home = () => {
                     Select the ones you like!
                 </p>
                 <div className="columns is-multiline">
-                    {items.map(item => (
-                        <div key={item.id} className="column is-4">
-                            <Item {...item} />
-                        </div>
-                    ))}
+                    <Context.Consumer>
+                        {({ products }) => products.map(product => (
+                            <div key={product.id} className="column is-4">
+                                <ProductCard product={product} />
+                            </div>
+                        ))}
+                    </Context.Consumer>
                 </div>
             </div>
         </section>
