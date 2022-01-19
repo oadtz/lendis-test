@@ -16,9 +16,16 @@ const ShopStore = (props: any) => {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch('https://fakestoreapi.com/products');
+            let products = JSON.parse(localStorage.getItem('products') ?? '[]')
 
-            setProducts(await response.json());
+            if (!products?.length) {
+                const response = await fetch('https://fakestoreapi.com/products');
+
+                products = await response.json()
+            }
+
+            setProducts(products);
+            localStorage.setItem('products', JSON.stringify(products))
         } catch (e) {
             console.error('Failed to fetch products');
         }
