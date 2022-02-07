@@ -14,7 +14,7 @@ const ProductCard: FunctionComponent<ProductProps> = ({ product }: ProductProps)
         <article className="card">
             <div className="card-image">
                 <figure className="image is-4by3">
-                    <img src={image} alt={title} />
+                    <img src={image} alt={title} title={title} />
                 </figure>
             </div>
             <div className="card-content">

@@ -1,13 +1,12 @@
 import React, { FunctionComponent } from 'react';
 import { Routes, Route } from "react-router-dom";
 import ShopStore from '../components/ShopStore';
+import NavBar from '../components/NavBar';
 import Home from './Home';
 import ShoppingCart from './ShoppingCart';
-import NavBar from '../components/NavBar';
 
 import 'bulma/css/bulma.min.css';
 import '../styles.css'
-
 
 const App: FunctionComponent = () => {
   return (
@@ -17,10 +16,10 @@ const App: FunctionComponent = () => {
           <NavBar />
         </header>
         <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="cart" element={<ShoppingCart />} />
-            </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="cart" element={<ShoppingCart />} />
+          </Routes>
         </main>
       </div>
     </ShopStore>
