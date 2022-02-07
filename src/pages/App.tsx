@@ -3,9 +3,10 @@ import { Routes, Route } from "react-router-dom";
 import ShopStore from '../components/ShopStore';
 import Home from './Home';
 import ShoppingCart from './ShoppingCart';
+import NavBar from '../components/NavBar';
 
 import 'bulma/css/bulma.min.css';
-import NavBar from '../components/NavBar';
+import '../styles.css'
 
 
 const App: FunctionComponent = () => {

@@ -1,4 +1,4 @@
-import { FunctionComponent, useContext } from "react";
+import React, { FunctionComponent, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "./ShopStore";
 
