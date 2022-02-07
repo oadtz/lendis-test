@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useContext } from 'react';
-import { Context } from './ShopStore';
+import { Context } from '../components/ShopStore';
 import { Product } from '../types';
 
 const ShoppingCart: FunctionComponent = () => {

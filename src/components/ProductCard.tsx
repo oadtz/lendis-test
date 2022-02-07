@@ -8,7 +8,7 @@ type ProductProps = {
 
 const ProductCard: FunctionComponent<ProductProps> = ({ product }: ProductProps) => {
     const { id, title, image, price } = product
-    const { cart, addToCart } = useContext(Context)
+    const { addToCart } = useContext(Context)
 
     return (
         <article className="card">
@@ -20,7 +20,7 @@ const ProductCard: FunctionComponent<ProductProps> = ({ product }: ProductProps)
             <div className="card-content">
                 <div className="media">
                     <div className="media-content">
-                        <p className="is-4">{title}</p>
+                        <p className="media-title is-4">{title}</p>
                     </div>
                 </div>
 
@@ -29,7 +29,7 @@ const ProductCard: FunctionComponent<ProductProps> = ({ product }: ProductProps)
                 </div>
             </div>
             <footer className="card-footer">
-                <a role="button" onClick={() => addToCart(id)} className="card-footer-item">Add to cart</a>
+                <button onClick={() => addToCart(id)} className="card-footer-item">Add to cart</button>
             </footer>
         </article>
     );

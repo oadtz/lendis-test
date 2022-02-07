@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useContext } from 'react';
-import ProductCard from './ProductCard';
-import { Context } from './ShopStore';
+import ProductCard from '../components/ProductCard';
+import { Context } from '../components/ShopStore';
 
 const Home: FunctionComponent = () => {
     const { products } = useContext(Context);

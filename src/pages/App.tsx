@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import { Routes, Route } from "react-router-dom";
-import ShopStore from './ShopStore';
+import ShopStore from '../components/ShopStore';
 import Home from './Home';
 import ShoppingCart from './ShoppingCart';
 
 import 'bulma/css/bulma.min.css';
-import NavBar from './NavBar';
+import NavBar from '../components/NavBar';
 
 
 const App: FunctionComponent = () => {
